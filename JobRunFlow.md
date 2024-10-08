@@ -1,4 +1,5 @@
 # No Authentication included - Everything as expected, with job
+```
 @startuml
 participant WorkerRegistry as wr
 participant Worker as w
@@ -19,3 +20,4 @@ wg --> w: jobFinishedReceived
 w -> wr: status: readyForWork
 wr --> w: status received
 @enduml
+```
