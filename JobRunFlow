@@ -1,0 +1,21 @@
+# No Authentication included - Everything as expected, with job
+@startuml
+participant WorkerRegistry as wr
+participant Worker as w
+participant WorkerGateway as wg
+participant Job as j
+w -> wg: getJob
+wg -> j: getJobForWorkerX
+j --> wg: returnJobForX
+wg --> w: returnJob
+w -> wr: status: Working
+wr --> w: status received
+note over w : Execute Job
+w -> wg: jobFinished
+note left: Contains  Artifacts, Logs and Result
+wg -> j: jobXFinished
+j --> wg: jobFinishedReceived
+wg --> w: jobFinishedReceived
+w -> wr: status: readyForWork
+wr --> w: status received
+@enduml
